@@ -1,0 +1,2 @@
+export const ADD_PLANTE = "PLANTES/ADD_PLANTE";
+export const REMOVE_PLANTE = "PLANTES/REMOVE_PLANTE";
