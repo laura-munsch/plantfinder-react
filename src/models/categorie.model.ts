@@ -4,7 +4,7 @@ export interface Categorie {
   id: number;
   createdAt: Date;
   updatedAt: Date;
-  deleteddAt: Date;
+  deletedAt: Date;
   nom: string;
   plantes: Array<Plante>;
 }

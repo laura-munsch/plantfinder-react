@@ -4,7 +4,7 @@ export interface Caracteristique {
   id: number;
   createdAt: Date;
   updatedAt: Date;
-  deleteddAt: Date;
+  deletedAt: Date;
   nom: string;
   valeur: string;
   plante: Plante;

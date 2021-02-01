@@ -5,7 +5,7 @@ export interface Plante {
   id: number;
   createdAt: Date;
   updatedAt: Date;
-  deleteddAt: Date;
+  deletedAt: Date;
   nom: string;
   description: string;
   image: string;
