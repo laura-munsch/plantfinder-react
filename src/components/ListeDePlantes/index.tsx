@@ -1,6 +1,6 @@
 import React from "react";
 import { fetchPlantes } from "../../redux/plantes/actions";
-import './App.scss';
+import './ListeDePlantes.scss';
 
 function ListeDePlantes() {
   const [plantes, setPlantes] = React.useState<any>([]);
