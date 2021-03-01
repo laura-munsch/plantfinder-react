@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Caracteristique } from "../../models/caracteristique.models";
+import { Categorie } from "../../models/categorie.model";
+import { Plante } from "../../models/plante.models";
 import { fetchPlante } from "../../redux/plantes/actions";
+import { numAverage } from "../../services/utilities.service";
 import './Plante.scss';
 
-function Plante(props: any) {
+function InfoPlante(props: any) {
   let id = props.match.params.id;
 
-  const [plante, setPlante] = React.useState<any>({});
+  const [plante, setPlante] = React.useState<Plante | null>(null);
 
   React.useEffect(() => {
     fetchPlante(id).then(res => {
@@ -17,19 +20,59 @@ function Plante(props: any) {
 
   console.log(plante);
 
-  return (
-    <div className="infos-plante">
-      <Link to={"/"}>Retour à la liste</Link>
-      <h1>{ plante.nom }</h1>
-      <img src={ plante.image } alt={ plante.nom } />
-      <ul>
-        { plante.caracteristiques &&
-          plante.caracteristiques.map((caracteristique:Caracteristique, i:number) => (
-            <li key={i}> </li>
-        ))}
-      </ul>
-    </div>
-  )
+  if (plante !== null) {
+    let eau: Array<number> = [];
+    let lumiere: Array<number> = [];
+    let difficulte: Array<number> = [];
+
+    plante.caracteristiques &&
+      plante.caracteristiques.forEach((caracteristique:Caracteristique, i:number) => {
+        switch (caracteristique.nom) {
+          case ("eau") :
+            eau.push(parseInt(caracteristique.valeur));
+          break;
+          case ("lumière") :
+            lumiere.push(parseInt(caracteristique.valeur));
+          break;
+          case ("difficulté") :
+            difficulte.push(parseInt(caracteristique.valeur));
+          break;
+        }
+    })
+
+    return (
+      <div className="infos-plante">
+        <Link to={"/"}>Retour à la liste</Link>
+        <h2>{ plante.nom }</h2>
+        <img src={ plante.image } alt={ plante.nom } />
+
+        <p>Crée le { new Date(plante.created_at).toLocaleDateString() }</p>
+
+        <p>{ plante.description }</p>
+
+        <h3>Caractéristiques de la plante :</h3>
+        <ul>
+            <li key={1}>Eau : { numAverage(eau) }</li>
+            <li key={2}>Lumière : { numAverage(lumiere) } </li>
+            <li key={3}>Difficulté : { numAverage(difficulte) }</li>
+        </ul>
+
+        <h3>Catégories :</h3>
+        <ul>
+          { plante.categories &&
+            plante.categories.map((categorie:Categorie, i:number) => (
+              <li key={i}>
+                { categorie.nom }
+              </li>
+            ))}
+        </ul>
+      </div>
+    )
+  } else {
+    return (
+      <p>"En attente du chargement de la plante..."</p>
+    )
+  }
 }
 
-export default Plante;
+export default InfoPlante;
