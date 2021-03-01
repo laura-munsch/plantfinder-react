@@ -5,7 +5,7 @@ import { Categorie } from "../../models/categorie.model";
 import { Plante } from "../../models/plante.models";
 import { fetchPlante } from "../../redux/plantes/actions";
 import { numAverage } from "../../services/utilities.service";
-import './Plante.scss';
+import "./Plante.scss";
 
 function InfoPlante(props: any) {
   let id = props.match.params.id;
@@ -13,7 +13,7 @@ function InfoPlante(props: any) {
   const [plante, setPlante] = React.useState<Plante | null>(null);
 
   React.useEffect(() => {
-    fetchPlante(id).then(res => {
+    fetchPlante(id).then((res) => {
       setPlante(res);
     });
   }, [id]);
@@ -26,52 +26,50 @@ function InfoPlante(props: any) {
     let difficulte: Array<number> = [];
 
     plante.caracteristiques &&
-      plante.caracteristiques.forEach((caracteristique:Caracteristique, i:number) => {
-        switch (caracteristique.nom) {
-          case ("eau") :
-            eau.push(parseInt(caracteristique.valeur));
-          break;
-          case ("lumière") :
-            lumiere.push(parseInt(caracteristique.valeur));
-          break;
-          case ("difficulté") :
-            difficulte.push(parseInt(caracteristique.valeur));
-          break;
+      plante.caracteristiques.forEach(
+        (caracteristique: Caracteristique, i: number) => {
+          switch (caracteristique.nom) {
+            case "eau":
+              eau.push(parseInt(caracteristique.valeur));
+              break;
+            case "lumière":
+              lumiere.push(parseInt(caracteristique.valeur));
+              break;
+            case "difficulté":
+              difficulte.push(parseInt(caracteristique.valeur));
+              break;
+          }
         }
-    })
+      );
 
     return (
       <div className="infos-plante">
         <Link to={"/"}>Retour à la liste</Link>
-        <h2>{ plante.nom }</h2>
-        <img src={ plante.image } alt={ plante.nom } />
+        <h2>{plante.nom}</h2>
+        <img src={plante.image} alt={plante.nom} />
 
-        <p>Crée le { new Date(plante.created_at).toLocaleDateString() }</p>
+        <p>Crée le {new Date(plante.created_at).toLocaleDateString()}</p>
 
-        <p>{ plante.description }</p>
+        <p>{plante.description}</p>
 
         <h3>Caractéristiques de la plante :</h3>
         <ul>
-            <li key={1}>Eau : { numAverage(eau) }</li>
-            <li key={2}>Lumière : { numAverage(lumiere) } </li>
-            <li key={3}>Difficulté : { numAverage(difficulte) }</li>
+          <li key={1}>Eau : {numAverage(eau)}</li>
+          <li key={2}>Lumière : {numAverage(lumiere)} </li>
+          <li key={3}>Difficulté : {numAverage(difficulte)}</li>
         </ul>
 
         <h3>Catégories :</h3>
         <ul>
-          { plante.categories &&
-            plante.categories.map((categorie:Categorie, i:number) => (
-              <li key={i}>
-                { categorie.nom }
-              </li>
+          {plante.categories &&
+            plante.categories.map((categorie: Categorie, i: number) => (
+              <li key={i}>{categorie.nom}</li>
             ))}
         </ul>
       </div>
-    )
+    );
   } else {
-    return (
-      <p>"En attente du chargement de la plante..."</p>
-    )
+    return <p>En attente du chargement de la plante...</p>;
   }
 }
 
