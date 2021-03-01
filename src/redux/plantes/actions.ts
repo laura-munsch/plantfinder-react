@@ -39,6 +39,11 @@ export const fetchPlantes = async () => {
   return plantes;
 };
 
+export const fetchPlante = async (id: number) => {
+  const plante = await apiService.fecthPlante(id);
+  return plante;
+};
+
 const PlantesActions = {
   add: addPlante,
   remove: removePlante,

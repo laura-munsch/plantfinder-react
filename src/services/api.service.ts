@@ -15,6 +15,12 @@ class ApiService {
     return plantes;
   }
 
+  async fecthPlante(id: number) {
+    const { data: plante } = await this.http.get<Plante>("/plante/" + id);
+
+    return plante;
+  }
+
 }
 
 export const apiService = new ApiService(axiosHttpClient);
