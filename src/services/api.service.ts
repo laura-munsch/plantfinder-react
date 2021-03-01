@@ -10,7 +10,7 @@ class ApiService {
   }
 
   async fecthPlantes() {
-    const { data: plantes } = await this.http.get<Plante>("/plante");
+    const { data: plantes } = await this.http.get<Array<Plante>>("/plante");
 
     return plantes;
   }
