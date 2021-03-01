@@ -17,7 +17,7 @@ const addPlante: ActionCreator<AddPlanteAction> = (
   type: ADD_PLANTE,
   payload: {
     id,
-    createdAt: new Date(Date.now()),
+    created_at: new Date(Date.now()),
     nom,
     image,
     description,
