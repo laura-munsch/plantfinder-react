@@ -1,8 +1,10 @@
 import { ActionCreator } from "redux";
 import { Plante } from "../../models/plante.models";
-import { ADD_PLANTE, REMOVE_PLANTE } from "./constants";
+import { ADD_PLANTE, LOAD_PLANTES, REMOVE_PLANTE } from "./constants";
 import { Action } from "../types";
+import { apiService } from "../../services/api.service";
 
+export type LoadPlantesAction = Action<Array<Plante>>;
 export type AddPlanteAction = Action<Plante>;
 export type RemovePlanteAction = Action<number>;
 
@@ -27,7 +29,20 @@ const removePlante: ActionCreator<RemovePlanteAction> = (id: number) => ({
   payload: id,
 });
 
-export default {
+const loadPlantes: ActionCreator<LoadPlantesAction> = (status: any) => ({
+  type: LOAD_PLANTES,
+  payload: status,
+});
+
+export const fetchPlantes = async () => {
+  const plantes = await apiService.fecthPlantes();
+  return plantes;
+};
+
+const PlantesActions = {
   add: addPlante,
   remove: removePlante,
-};
+  load: loadPlantes
+}
+
+export default PlantesActions;
