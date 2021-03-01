@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { fetchPlantes } from "../../redux/plantes/actions";
 import './ListeDePlantes.scss';
 
@@ -17,8 +18,10 @@ function ListeDePlantes() {
       <ul className="liste-de-plantes">{ plantes &&
         plantes.map((plante: any, i: number): any => (
           <li key={i}>
-            <img src={plante.image} alt={plante.nom}></img>
-            <h3>{ plante.nom }</h3>
+            <Link to={"/plante/" + plante.id}>
+              <img src={plante.image} alt={plante.nom}></img>
+              <h3>{ plante.nom }</h3>
+            </Link>
           </li>
         ))}
       </ul>
