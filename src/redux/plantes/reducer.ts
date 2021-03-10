@@ -1,10 +1,10 @@
 import { Reducer } from "redux";
 import { Plante } from "../../models/plante.models";
-import { AddPlanteAction, RemovePlanteAction } from "./actions";
-import { ADD_PLANTE, REMOVE_PLANTE } from "./constants";
+import { LoadPlantesAction } from "./actions";
+import { LOAD_PLANTES } from "./constants";
 
 export type PlanteState = Plante[];
-export type PlanteActions = AddPlanteAction | RemovePlanteAction;
+export type PlanteActions = LoadPlantesAction;
 
 const initialState: PlanteState = [];
 
@@ -13,14 +13,12 @@ const plantesReducer: Reducer<PlanteState, PlanteActions> = (
   action
 ) => {
   switch (action.type) {
-    case ADD_PLANTE: {
-      // action à réaliser pour ajouter une plante -> appel api
-      return state;
-    }
-
-    case REMOVE_PLANTE: {
-      // action à réaliser pour enlever une plante -> appel api
-      return state;
+    case LOAD_PLANTES: {
+      const { payload: plantes } = action as LoadPlantesAction;
+      return {
+        ...state,
+        plantes,
+      };
     }
 
     default:

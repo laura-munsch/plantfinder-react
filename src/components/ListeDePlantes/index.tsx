@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Plante } from "../../models/plante.models";
 import { fetchPlantes } from "../../redux/plantes/actions";
+import store from "../../redux/store";
 import Recherche from "../Recherche";
 import "./ListeDePlantes.scss";
 
 function ListeDePlantes() {
-  const [plantes, setPlantes] = React.useState<Array<Plante> | null>(null);
   const [
     plantesFiltrees,
     setPlantesFiltrees,
@@ -14,10 +14,11 @@ function ListeDePlantes() {
 
   React.useEffect(() => {
     fetchPlantes().then((res) => {
-      setPlantes(res);
       setPlantesFiltrees(res);
     });
   }, []);
+
+  const plantes = store.getState().plantes;
 
   if (plantes) {
     return (
