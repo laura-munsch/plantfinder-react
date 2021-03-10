@@ -47,7 +47,7 @@ export const fetchPlante = async (id: number) => {
 const PlantesActions = {
   add: addPlante,
   remove: removePlante,
-  load: loadPlantes
-}
+  load: loadPlantes,
+};
 
 export default PlantesActions;

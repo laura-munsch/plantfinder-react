@@ -20,7 +20,18 @@ class ApiService {
 
     return plante;
   }
+  async deletePlante(id: number) {
+    await this.http.delete<Plante>("/plante" + id);
+  }
 
+  async addPlante(nom: string, description: string, image: string) {
+    await this.http.post<Plante>("/plante", {
+      nom: nom,
+      description: nom,
+      image: image,
+      created_at: Date.now(),
+    });
+  }
 }
 
 export const apiService = new ApiService(axiosHttpClient);
