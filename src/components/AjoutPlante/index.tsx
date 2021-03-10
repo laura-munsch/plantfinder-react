@@ -1,5 +1,5 @@
 import React from "react";
-import { apiService } from "../../services/api.service";
+import { addPlante } from "../../redux/plantes/actions";
 import "./AjoutPlante.scss";
 
 function AjoutPlante(props: any) {
@@ -12,11 +12,9 @@ function AjoutPlante(props: any) {
     ) as HTMLInputElement;
     const image = document.getElementById("image") as HTMLInputElement;
 
-    apiService
-      .addPlante(nom.value, description.value, image.value)
-      .then((res) => {
-        props.history.push("plante/" + res.data.id);
-      });
+    addPlante(nom.value, description.value, image.value).then((res) => {
+      props.history.push("plante/" + res.data.id);
+    });
   }
 
   return (

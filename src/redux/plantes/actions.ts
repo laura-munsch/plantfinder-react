@@ -27,6 +27,22 @@ export const fetchPlante = async (id: number) => {
   return plante;
 };
 
+export const addPlante = async (
+  nom: string,
+  description: string,
+  image: string
+) => {
+  const plante = await apiService.addPlante(nom, description, image);
+
+  return plante;
+};
+
+export const removePlante = async (id: number) => {
+  const plante = await apiService.deletePlante(id);
+
+  return plante;
+};
+
 const PlantesActions = {
   load: loadPlantes,
 };
