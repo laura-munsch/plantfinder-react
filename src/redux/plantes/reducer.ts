@@ -1,9 +1,9 @@
 import { Reducer } from "redux";
-import { Plante } from "../../models/plante.models";
 import { LoadPlantesAction } from "./actions";
 import { LOAD_PLANTES } from "./constants";
 
-export type PlanteState = Plante[];
+// TODO : essayer de remplacer le any ci-dessous
+export type PlanteState = any;
 export type PlanteActions = LoadPlantesAction;
 
 const initialState: PlanteState = [];
@@ -14,10 +14,10 @@ const plantesReducer: Reducer<PlanteState, PlanteActions> = (
 ) => {
   switch (action.type) {
     case LOAD_PLANTES: {
-      const { payload: plantes } = action as LoadPlantesAction;
+      const { payload: toutesLesPlantes } = action as LoadPlantesAction;
       return {
         ...state,
-        plantes,
+        toutesLesPlantes,
       };
     }
 

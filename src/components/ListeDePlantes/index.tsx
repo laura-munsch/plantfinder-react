@@ -18,12 +18,12 @@ function ListeDePlantes() {
     });
   }, []);
 
-  const plantes = store.getState().plantes;
+  const plantes = store.getState().plantes.toutesLesPlantes;
 
   if (plantes) {
     return (
       <div>
-        <Recherche plantes={plantes} filtrerPlantes={setPlantesFiltrees} />
+        <Recherche filtrerPlantes={setPlantesFiltrees} />
 
         <h2>Liste des plantes</h2>
         <ul className="liste-de-plantes">
