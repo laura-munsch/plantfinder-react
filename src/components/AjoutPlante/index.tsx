@@ -2,14 +2,8 @@ import React from "react";
 import { apiService } from "../../services/api.service";
 import "./AjoutPlante.scss";
 
-function AjoutPlante() {
+function AjoutPlante(props: any) {
   function ajouterPlante(e: any) {
-    /*  const nom: any = document.getElementById("nom").value;
-    const description: any = document.getElementById("description").value;
-    const image: any = document.getElementById("image").value;
-
-    apiService.addPlante(nom.value, description, image); */
-
     e.preventDefault();
 
     const nom = document.getElementById("nom") as HTMLInputElement;
@@ -18,7 +12,11 @@ function AjoutPlante() {
     ) as HTMLInputElement;
     const image = document.getElementById("image") as HTMLInputElement;
 
-    apiService.addPlante(nom.value, description.value, image.value);
+    apiService
+      .addPlante(nom.value, description.value, image.value)
+      .then((res) => {
+        props.history.push("plante/" + res.data.id);
+      });
   }
 
   return (

@@ -20,17 +20,29 @@ class ApiService {
 
     return plante;
   }
-  async deletePlante(id: number) {
-    await this.http.delete<Plante>("/plante" + id);
-  }
 
   async addPlante(nom: string, description: string, image: string) {
-    await this.http.post<Plante>("/plante", {
-      nom: nom,
-      description: nom,
-      image: image,
-      created_at: Date.now(),
-    });
+    try {
+      const plante = this.http.post<Plante>("/plante", {
+        nom: nom,
+        description: nom,
+        image: image,
+        created_at: Date.now(),
+      });
+
+      return plante;
+    } catch (error) {
+      throw new Error("problème");
+    }
+  }
+
+  async deletePlante(id: number) {
+    try {
+      const res = this.http.delete<Plante>("/plante/" + id);
+      return await res;
+    } catch (error) {
+      throw new Error("problème lors de la suppression");
+    }
   }
 }
 

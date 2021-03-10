@@ -4,6 +4,7 @@ import { Caracteristique } from "../../models/caracteristique.models";
 import { Categorie } from "../../models/categorie.model";
 import { Plante } from "../../models/plante.models";
 import { fetchPlante } from "../../redux/plantes/actions";
+import { apiService } from "../../services/api.service";
 import { numAverage } from "../../services/utilities.service";
 import "./Plante.scss";
 
@@ -18,9 +19,13 @@ function InfoPlante(props: any) {
     });
   }, [id]);
 
-  console.log(plante);
-
   if (plante !== null) {
+    const supprimerPlante = () => {
+      apiService.deletePlante(plante.id).then(() => {
+        props.history.push("/plante");
+      });
+    };
+
     let eau: Array<number> = [];
     let lumiere: Array<number> = [];
     let difficulte: Array<number> = [];
@@ -44,7 +49,7 @@ function InfoPlante(props: any) {
 
     return (
       <div className="infos-plante">
-        <Link to={"/"}>Retour à la liste</Link>
+        <Link to={"/plante"}>Retour à la liste</Link>
         <h2>{plante.nom}</h2>
         <img src={plante.image} alt={plante.nom} />
 
@@ -66,6 +71,8 @@ function InfoPlante(props: any) {
               <li key={i}>{categorie.nom}</li>
             ))}
         </ul>
+
+        <button onClick={supprimerPlante}>Supprimer la plante</button>
       </div>
     );
   } else {
