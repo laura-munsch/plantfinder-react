@@ -1,24 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Plante } from "../../models/plante.models";
-import { fetchPlantes } from "../../redux/plantes/actions";
-import store from "../../redux/store";
 import Recherche from "../Recherche";
 import "./ListeDePlantes.scss";
 
-function ListeDePlantes() {
+function ListeDePlantes(props: any) {
+  const plantes: Plante[] = props.plantes;
+
   const [
     plantesFiltrees,
     setPlantesFiltrees,
   ] = React.useState<Array<Plante> | null>(null);
 
   React.useEffect(() => {
-    fetchPlantes().then((res) => {
-      setPlantesFiltrees(res);
-    });
-  }, []);
-
-  const plantes = store.getState().plantes.toutesLesPlantes;
+    setPlantesFiltrees(plantes);
+  }, [plantes]);
 
   if (plantes) {
     return (

@@ -1,10 +1,10 @@
 import React from "react";
 import { Plante } from "../../models/plante.models";
-import store from "../../redux/store";
+import { plantesSelector } from "../../redux/plantes/selector";
 import "./Recherche.scss";
 
 function Recherche(props: { filtrerPlantes: React.Dispatch<Array<Plante>> }) {
-  const plantes = store.getState().plantes.toutesLesPlantes;
+  const plantes = plantesSelector;
 
   function filtrerNom(e: any) {
     let nomRecherche: string = e.target.value;

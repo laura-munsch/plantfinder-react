@@ -1,3 +1,5 @@
-import { RootState } from "../reducer";
+import { Plante } from "../../models/plante.models";
+import store from "../store";
 
-export const plantesSelector = (state: RootState) => state.plantes;
+export const plantesSelector: Plante[] = store.getState().plantes
+  .toutesLesPlantes;

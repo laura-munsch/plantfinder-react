@@ -6,10 +6,14 @@ import { createBrowserHistory } from "history";
 import Plante from "../Plante";
 import AjoutPlante from "../AjoutPlante";
 import Accueil from "../Accueil";
+import { fetchPlantes } from "../../redux/plantes/actions";
+import { plantesSelector } from "../../redux/plantes/selector";
 
 const history = createBrowserHistory();
 
 function App() {
+  fetchPlantes();
+
   return (
     <div className="App">
       <Router history={history}>
@@ -17,7 +21,9 @@ function App() {
           <Link to="/">Plantes</Link>
         </h1>
         <Route exact path="/" component={Accueil} />
-        <Route exact path="/plante" component={ListeDePlantes} />
+        <Route exact path="/plante">
+          <ListeDePlantes plantes={plantesSelector} />
+        </Route>
         <Route exact path="/plante/:id" component={Plante} />
         <Route exact path="/ajout-plante" component={AjoutPlante} />
       </Router>
