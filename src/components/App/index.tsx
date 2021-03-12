@@ -3,16 +3,15 @@ import { Link, Route, Router } from "react-router-dom";
 import ListeDePlantes from "../ListeDePlantes";
 import "./App.scss";
 import { createBrowserHistory } from "history";
-import Plante from "../Plante";
+import PlanteComposant from "../Plante";
 import AjoutPlante from "../AjoutPlante";
 import Accueil from "../Accueil";
 import { fetchPlantes } from "../../redux/plantes/actions";
-import { plantesSelector } from "../../redux/plantes/selector";
 
 const history = createBrowserHistory();
 
 function App() {
-  fetchPlantes();
+  const plantes = fetchPlantes();
 
   return (
     <div className="App">
@@ -22,9 +21,9 @@ function App() {
         </h1>
         <Route exact path="/" component={Accueil} />
         <Route exact path="/plante">
-          <ListeDePlantes plantes={plantesSelector} />
+          <ListeDePlantes plantes={plantes} />
         </Route>
-        <Route exact path="/plante/:id" component={Plante} />
+        <Route exact path="/plante/:id" component={PlanteComposant} />
         <Route exact path="/ajout-plante" component={AjoutPlante} />
       </Router>
     </div>

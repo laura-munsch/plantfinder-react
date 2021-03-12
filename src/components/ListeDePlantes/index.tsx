@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Plante } from "../../models/plante.models";
+import store from "../../redux/store";
 import Recherche from "../Recherche";
 import "./ListeDePlantes.scss";
 
 function ListeDePlantes(props: any) {
-  const plantes: Plante[] = props.plantes;
+  let plantes: Plante[] = store.getState().plantes.toutesLesPlantes;
 
   const [
     plantesFiltrees,
@@ -39,9 +40,9 @@ function ListeDePlantes(props: any) {
         )}
       </div>
     );
-  } else {
-    return <p>En attente du chargement des plantes...</p>;
   }
+
+  return <p>En attente du chargement des plantes...</p>;
 }
 
 export default ListeDePlantes;
