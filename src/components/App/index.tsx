@@ -27,7 +27,7 @@ function App() {
         </Route>
         <Route exact path="/plante/:id" component={PlanteComposant} />
         <Route exact path="/ajout-plante">
-          <AjoutPlante categories={categories} />
+          <AjoutPlante categories={categories} history={history} />
         </Route>
       </Router>
     </div>
