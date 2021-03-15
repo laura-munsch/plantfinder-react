@@ -56,20 +56,33 @@ function InfoPlante(props: any) {
 
         <p>{plante.description}</p>
 
-        <h3>Caractéristiques de la plante :</h3>
-        <ul>
-          <li key={1}>Eau : {numAverage(eau)}</li>
-          <li key={2}>Lumière : {numAverage(lumiere)} </li>
-          <li key={3}>Difficulté : {numAverage(difficulte)}</li>
-        </ul>
+        {(eau.length !== 0 ||
+          lumiere.length !== 0 ||
+          difficulte.length !== 0) && (
+          <div>
+            <h3>Caractéristiques de la plante :</h3>
+            <ul>
+              {eau.length !== 0 && <li key={1}>Eau : {numAverage(eau)}</li>}
+              {lumiere.length !== 0 && (
+                <li key={2}>Lumière : {numAverage(lumiere)} </li>
+              )}
+              {difficulte.length !== 0 && (
+                <li key={3}>Difficulté : {numAverage(difficulte)}</li>
+              )}
+            </ul>
+          </div>
+        )}
 
-        <h3>Catégories :</h3>
-        <ul>
-          {plante.categories &&
-            plante.categories.map((categorie: Categorie, i: number) => (
-              <li key={i}>{categorie.nom}</li>
-            ))}
-        </ul>
+        {plante.categories && (
+          <div>
+            <h3>Catégories :</h3>
+            <ul>
+              {plante.categories.map((categorie: Categorie, i: number) => (
+                <li key={i}>{categorie.nom}</li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <button onClick={supprimerPlante}>Supprimer la plante</button>
       </div>
