@@ -1,5 +1,6 @@
 import { AxiosInstance } from "axios";
 import axiosHttpClient from "../axios";
+import { Categorie } from "../models/categorie.model";
 import { Plante } from "../models/plante.models";
 
 class ApiService {
@@ -43,6 +44,14 @@ class ApiService {
     } catch (error) {
       throw new Error("problème lors de la suppression");
     }
+  }
+
+  async fecthCategories() {
+    const { data: categories } = await this.http.get<Array<Categorie>>(
+      "/categorie"
+    );
+
+    return categories;
   }
 }
 
