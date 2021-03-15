@@ -7,11 +7,13 @@ import PlanteComposant from "../Plante";
 import AjoutPlante from "../AjoutPlante";
 import Accueil from "../Accueil";
 import { fetchPlantes } from "../../redux/plantes/actions";
+import { fecthCategories } from "../../redux/categories/actions";
 
 const history = createBrowserHistory();
 
 function App() {
   const plantes = fetchPlantes();
+  const categories = fecthCategories();
 
   return (
     <div className="App">
@@ -24,7 +26,9 @@ function App() {
           <ListeDePlantes plantes={plantes} />
         </Route>
         <Route exact path="/plante/:id" component={PlanteComposant} />
-        <Route exact path="/ajout-plante" component={AjoutPlante} />
+        <Route exact path="/ajout-plante">
+          <AjoutPlante categories={categories} />
+        </Route>
       </Router>
     </div>
   );

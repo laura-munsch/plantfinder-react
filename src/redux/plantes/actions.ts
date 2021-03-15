@@ -32,9 +32,10 @@ export const fetchPlante = async (id: number) => {
 export const addPlante = async (
   nom: string,
   description: string,
-  image: string
+  image: string,
+  categorie?: number
 ) => {
-  const plante = await apiService.addPlante(nom, description, image);
+  const plante = await apiService.addPlante(nom, description, image, categorie);
 
   return plante;
 };

@@ -22,12 +22,18 @@ class ApiService {
     return plante;
   }
 
-  async addPlante(nom: string, description: string, image: string) {
+  async addPlante(
+    nom: string,
+    description: string,
+    image: string,
+    categorie?: number
+  ) {
     try {
       const plante = this.http.post<Plante>("/plante", {
         nom: nom,
         description: nom,
         image: image,
+        categories: [categorie],
         created_at: Date.now(),
       });
 
