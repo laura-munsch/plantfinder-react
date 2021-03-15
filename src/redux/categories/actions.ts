@@ -7,6 +7,8 @@ import store from "../store";
 
 export type LoadCategoriesAction = Action<Array<Categorie>>;
 
+export type CategoriesActions = LoadCategoriesAction;
+
 const loadCategories: ActionCreator<LoadCategoriesAction> = (
   categories: Array<Categorie>
 ) => ({
@@ -19,10 +21,6 @@ export const fecthCategories = async () => {
   store.dispatch(loadCategories(categories));
 
   return categories;
-};
-
-const CategoriesActions = {
-  load: loadCategories,
 };
 
 export default CategoriesActions;

@@ -1,14 +1,17 @@
 import { Reducer } from "redux";
-import { LoadPlantesAction } from "./actions";
+import { Plante } from "../../models/plante.models";
+import { LoadPlantesAction, PlantesActions } from "./actions";
 import { LOAD_PLANTES } from "./constants";
 
-// TODO : essayer de remplacer le any ci-dessous
-export type PlanteState = any;
-export type PlanteActions = LoadPlantesAction;
+export type PlanteState = {
+  toutesLesPlantes: Plante[];
+};
 
-const initialState: PlanteState = [];
+const initialState: PlanteState = {
+  toutesLesPlantes: [],
+};
 
-const plantesReducer: Reducer<PlanteState, PlanteActions> = (
+const plantesReducer: Reducer<PlanteState, PlantesActions> = (
   state = initialState,
   action
 ) => {

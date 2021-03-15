@@ -3,8 +3,8 @@ import categoriesReducer from "./categories/reducer";
 import plantesReducer from "./plantes/reducer";
 
 const rootReducer = combineReducers({
-  plantes: plantesReducer,
   categories: categoriesReducer,
+  plantes: plantesReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

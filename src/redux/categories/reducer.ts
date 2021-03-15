@@ -1,14 +1,17 @@
 import { Reducer } from "redux";
-import { LoadCategoriesAction } from "./actions";
+import { Categorie } from "../../models/categorie.model";
+import { CategoriesActions, LoadCategoriesAction } from "./actions";
 import { LOAD_CATEGORIES } from "./constants";
 
-// TODO : essayer de remplacer le any ci-dessous
-export type CategorieState = any;
-export type CategorieActions = LoadCategoriesAction;
+export type CategorieState = {
+  toutesLesCategories: Categorie[];
+};
 
-const initialState: CategorieState = [];
+const initialState: CategorieState = {
+  toutesLesCategories: [],
+};
 
-const categoriesReducer: Reducer<CategorieState, CategorieActions> = (
+const categoriesReducer: Reducer<CategorieState, CategoriesActions> = (
   state = initialState,
   action
 ) => {
