@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, Route, Router } from "react-router-dom";
 import ListeDePlantes from "../ListeDePlantes";
-import "./App.scss";
 import { createBrowserHistory } from "history";
 import PlanteComposant from "../Plante";
 import AjoutPlante from "../AjoutPlante";
@@ -18,8 +17,8 @@ function App() {
   return (
     <div className="App">
       <Router history={history}>
-        <h1>
-          <Link to="/">Plantes</Link>
+        <h1 className="text-center mt-24 text-5xl">
+          <Link to="/">Plantfinder</Link>
         </h1>
         <Route exact path="/" component={Accueil} />
         <Route exact path="/plante">

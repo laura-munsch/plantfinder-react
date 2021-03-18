@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Plante } from "../../models/plante.models";
 import store from "../../redux/store";
 import Recherche from "../Recherche";
-import "./ListeDePlantes.scss";
 
 function ListeDePlantes(props: any) {
   let plantes: Plante[] = store.getState().plantes.toutesLesPlantes;
@@ -19,18 +18,30 @@ function ListeDePlantes(props: any) {
 
   if (plantes) {
     return (
-      <div>
-        <Recherche filtrerPlantes={setPlantesFiltrees} />
+      <div className="bg-yellow-100 p-10 mt-10">
+        <div className="mb-5 sm:pl-1 lg:pl-3">
+          <Recherche filtrerPlantes={setPlantesFiltrees} />
+        </div>
 
-        <h2>Liste des plantes</h2>
-        <ul className="liste-de-plantes">
+        <ul className="liste-de-plantes flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-1 lg:-mx-3 xl:-mx-3 w-full sm:pl-1 lg:pl-3">
           {plantesFiltrees &&
             plantesFiltrees.map((plante: Plante, i: number): any => (
-              <li key={i}>
-                <Link to={"/plante/" + plante.id}>
-                  <img src={plante.image} alt={plante.nom}></img>
-                  <h3>{plante.nom}</h3>
-                </Link>
+              <li
+                key={i}
+                className="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-3 lg:px-3 lg:w-1/3 xl:my-3 xl:px-3 xl:w-1/3"
+              >
+                <div className="relative">
+                  <Link to={"/plante/" + plante.id}>
+                    <img
+                      src={plante.image}
+                      alt={plante.nom}
+                      className="w-full h-80 object-cover object-center"
+                    ></img>
+                    <div className="absolute bottom-0 bg-gray-800 w-full text-white px-4 py-2">
+                      <h2 className="text-xl">{plante.nom}</h2>
+                    </div>
+                  </Link>
+                </div>
               </li>
             ))}
         </ul>
