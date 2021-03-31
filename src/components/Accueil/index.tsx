@@ -1,5 +1,26 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logIn, logOut } from "../../redux/connexion/action";
+import { isLoggedIn } from "../../redux/connexion/selector";
+
+const connexionButtonStyle: string = "ml-4 italic underline";
+
+const ConnexionButton = () => {
+  if (useSelector(isLoggedIn)) {
+    return (
+      <button onClick={logOut} className={connexionButtonStyle}>
+        Déconnexion
+      </button>
+    );
+  }
+
+  return (
+    <button onClick={logIn} className={connexionButtonStyle}>
+      Connexion
+    </button>
+  );
+};
 
 function Accueil() {
   return (
@@ -17,7 +38,12 @@ function Accueil() {
           </Link>
         </p>
         <p className="w-full absolute bottom-10 text-center italic underline">
-          <Link to="/ajout-plante">Ajouter une plante</Link>
+          {useSelector(isLoggedIn) && (
+            <Link to="/ajout-plante" className="mr-4">
+              Ajouter une plante
+            </Link>
+          )}
+          <ConnexionButton />
         </p>
       </div>
     </div>
