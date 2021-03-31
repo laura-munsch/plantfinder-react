@@ -16,18 +16,18 @@ const connexionReducer: Reducer<ConnexionState | undefined, ConnexionAction> = (
 ) => {
   switch (action.type) {
     case LOG_IN: {
-      const { payload: logIn } = action as LogInAction;
+      const { payload: isLoggedIn } = action as LogInAction;
       return {
         ...state,
-        logIn,
+        isLoggedIn,
       };
     }
 
     case LOG_OUT: {
-      const { payload: logOut } = action as LogOutAction;
+      const { payload: isLoggedIn } = action as LogOutAction;
       return {
         ...state,
-        logOut,
+        isLoggedIn,
       };
     }
 
