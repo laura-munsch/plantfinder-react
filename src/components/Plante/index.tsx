@@ -1,8 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Caracteristique } from "../../models/caracteristique.models";
 import { Categorie } from "../../models/categorie.model";
 import { Plante } from "../../models/plante.models";
+import { isLoggedIn } from "../../redux/connexion/selector";
 import {
   fetchPlante,
   fetchPlantes,
@@ -11,6 +13,7 @@ import {
 import { numAverage } from "../../services/utilities.service";
 
 function InfoPlante(props: any) {
+  const isConnected = useSelector(isLoggedIn);
   let id = props.match.params.id;
 
   const [plante, setPlante] = React.useState<Plante | null>(null);
@@ -27,6 +30,28 @@ function InfoPlante(props: any) {
         fetchPlantes();
         props.history.push("/plante");
       });
+    };
+
+    const Caracteristiques = () => {
+      return (
+        <ul className="flex ml-5 mb-4">
+          {eau.length !== 0 && (
+            <li key={1} className="mr-8">
+              Eau : <strong>{numAverage(eau)}</strong>
+            </li>
+          )}
+          {lumiere.length !== 0 && (
+            <li key={2} className="mr-8">
+              Lumière : <strong>{numAverage(lumiere)}</strong>
+            </li>
+          )}
+          {difficulte.length !== 0 && (
+            <li key={3} className="mr-8">
+              Difficulté : <strong>{numAverage(difficulte)}</strong>
+            </li>
+          )}
+        </ul>
+      );
     };
 
     let eau: Array<number> = [];
@@ -57,25 +82,7 @@ function InfoPlante(props: any) {
 
           {(eau.length !== 0 ||
             lumiere.length !== 0 ||
-            difficulte.length !== 0) && (
-            <ul className="flex ml-5 mb-4">
-              {eau.length !== 0 && (
-                <li key={1} className="mr-8">
-                  Eau : <strong>{numAverage(eau)}</strong>
-                </li>
-              )}
-              {lumiere.length !== 0 && (
-                <li key={2} className="mr-8">
-                  Lumière : <strong>{numAverage(lumiere)}</strong>
-                </li>
-              )}
-              {difficulte.length !== 0 && (
-                <li key={3} className="mr-8">
-                  Difficulté : <strong>{numAverage(difficulte)}</strong>
-                </li>
-              )}
-            </ul>
-          )}
+            difficulte.length !== 0) && <Caracteristiques />}
 
           <img
             src={plante.image}
@@ -103,9 +110,14 @@ function InfoPlante(props: any) {
 
           <p className="absolute bottom-0 underline italic">
             <Link to={"/plante"}>Retour à la liste</Link>
-            <button onClick={supprimerPlante} className="underline italic ml-8">
-              Supprimer la plante
-            </button>
+            {isConnected && (
+              <button
+                onClick={supprimerPlante}
+                className="underline italic ml-8"
+              >
+                Supprimer la plante
+              </button>
+            )}
           </p>
         </div>
       </div>
