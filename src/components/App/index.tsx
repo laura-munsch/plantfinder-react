@@ -10,9 +10,9 @@ import { fecthCategories } from "../../redux/categories/actions";
 
 const history = createBrowserHistory();
 
-function App() {
-  const plantes = fetchPlantes();
-  const categories = fecthCategories();
+function App(props: any) {
+  fetchPlantes();
+  fecthCategories();
 
   return (
     <div className="App">
@@ -22,11 +22,11 @@ function App() {
         </h1>
         <Route exact path="/" component={Accueil} />
         <Route exact path="/plante">
-          <ListeDePlantes plantes={plantes} />
+          <ListeDePlantes />
         </Route>
         <Route exact path="/plante/:id" component={PlanteComposant} />
         <Route exact path="/ajout-plante">
-          <AjoutPlante categories={categories} history={history} />
+          <AjoutPlante history={history} />
         </Route>
       </Router>
     </div>

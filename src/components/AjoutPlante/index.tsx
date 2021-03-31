@@ -1,10 +1,12 @@
 import React from "react";
-import { addPlante } from "../../redux/plantes/actions";
-import store from "../../redux/store";
+import { useSelector } from "react-redux";
+import { Categorie } from "../../models/categorie.model";
+import { selectCategories } from "../../redux/categories/selector";
+import { addPlante, fetchPlantes } from "../../redux/plantes/actions";
 import "./AjoutPlante.scss";
 
 function AjoutPlante(props: any) {
-  const categories = store.getState().categories.toutesLesCategories;
+  const categories: Categorie[] = useSelector(selectCategories);
 
   function ajouterPlante(e: any) {
     e.preventDefault();
@@ -19,6 +21,7 @@ function AjoutPlante(props: any) {
 
     addPlante(nom.value, description.value, image.value, categorie).then(
       (res) => {
+        fetchPlantes();
         props.history.push("plante/" + res.data.id);
       }
     );

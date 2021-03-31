@@ -1,11 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Plante } from "../../models/plante.models";
-import store from "../../redux/store";
+import { selectPlantes } from "../../redux/plantes/selectors";
 import Recherche from "../Recherche";
 
-function ListeDePlantes(props: any) {
-  let plantes: Plante[] = store.getState().plantes.toutesLesPlantes;
+function ListeDePlantes() {
+  let plantes: Plante[] = useSelector(selectPlantes);
 
   const [
     plantesFiltrees,

@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import { Caracteristique } from "../../models/caracteristique.models";
 import { Categorie } from "../../models/categorie.model";
 import { Plante } from "../../models/plante.models";
-import { fetchPlante, removePlante } from "../../redux/plantes/actions";
+import {
+  fetchPlante,
+  fetchPlantes,
+  removePlante,
+} from "../../redux/plantes/actions";
 import { numAverage } from "../../services/utilities.service";
 
 function InfoPlante(props: any) {
@@ -20,6 +24,7 @@ function InfoPlante(props: any) {
   if (plante !== null) {
     const supprimerPlante = () => {
       removePlante(plante.id).then(() => {
+        fetchPlantes();
         props.history.push("/plante");
       });
     };
