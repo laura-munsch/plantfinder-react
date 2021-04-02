@@ -31,7 +31,7 @@ class ApiService {
     try {
       const plante = this.http.post<Plante>("/plante", {
         nom: nom,
-        description: nom,
+        description: description,
         image: image,
         categories: [categorie],
         created_at: Date.now(),
