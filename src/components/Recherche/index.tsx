@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Plante } from "../../models/plante.models";
 import { selectPlantes } from "../../redux/plantes/selectors";
-import "./Recherche.scss";
 
 function Recherche(props: { filtrerPlantes: React.Dispatch<Array<Plante>> }) {
   const plantes: Plante[] = useSelector(selectPlantes);

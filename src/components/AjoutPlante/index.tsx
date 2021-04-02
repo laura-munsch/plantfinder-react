@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { Categorie } from "../../models/categorie.model";
 import { selectCategories } from "../../redux/categories/selector";
 import { addPlante, fetchPlantes } from "../../redux/plantes/actions";
-import "./AjoutPlante.scss";
 
 function AjoutPlante(props: any) {
   const categories: Categorie[] = useSelector(selectCategories);
