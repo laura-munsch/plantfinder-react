@@ -40,6 +40,24 @@ export const addPlante = async (
   return plante;
 };
 
+export const updatePlante = async (
+  id: number,
+  nom: string,
+  description: string,
+  image: string,
+  categorie?: number
+) => {
+  const plante = await apiService.updatePlante(
+    id,
+    nom,
+    description,
+    image,
+    categorie
+  );
+
+  return plante;
+};
+
 export const removePlante = async (id: number) => {
   const plante = await apiService.deletePlante(id);
 

@@ -14,7 +14,7 @@ import { numAverage } from "../../services/utilities.service";
 
 function InfoPlante(props: any) {
   const isConnected = useSelector(isLoggedIn);
-  let id = props.match.params.id;
+  const id = props.match.params.id;
 
   const [plante, setPlante] = React.useState<Plante | null>(null);
 
@@ -108,17 +108,29 @@ function InfoPlante(props: any) {
 
           <p>{plante.description}</p>
 
-          <p className="absolute bottom-0 underline italic">
-            <Link to={"/plante"}>Retour à la liste</Link>
+          <div className="absolute bottom-0 italic">
+            <Link to={"/plante"}>
+              &larr; <span className="underline">Retour à la liste</span>
+            </Link>
+
             {isConnected && (
-              <button
-                onClick={supprimerPlante}
-                className="underline italic ml-8"
-              >
-                Supprimer la plante
-              </button>
+              <div className="inline-block">
+                <Link
+                  to={"/plante/" + plante.id + "/modifier"}
+                  className="underline ml-8"
+                >
+                  Modifier la plante
+                </Link>
+
+                <button
+                  onClick={supprimerPlante}
+                  className="underline italic ml-8"
+                >
+                  Supprimer la plante
+                </button>
+              </div>
             )}
-          </p>
+          </div>
         </div>
       </div>
     );

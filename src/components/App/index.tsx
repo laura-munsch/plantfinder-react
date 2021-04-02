@@ -7,6 +7,7 @@ import AjoutPlante from "../AjoutPlante";
 import Accueil from "../Accueil";
 import { fetchPlantes } from "../../redux/plantes/actions";
 import { fecthCategories } from "../../redux/categories/actions";
+import ModifierPlante from "../ModifierPlante";
 
 const history = createBrowserHistory();
 
@@ -25,6 +26,7 @@ function App(props: any) {
           <ListeDePlantes />
         </Route>
         <Route exact path="/plante/:id" component={PlanteComposant} />
+        <Route exact path="/plante/:id/modifier" component={ModifierPlante} />
         <Route exact path="/ajout-plante">
           <AjoutPlante history={history} />
         </Route>

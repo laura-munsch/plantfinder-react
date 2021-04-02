@@ -43,6 +43,28 @@ class ApiService {
     }
   }
 
+  async updatePlante(
+    id: number,
+    nom: string,
+    description: string,
+    image: string,
+    categorie?: number
+  ) {
+    try {
+      const plante = this.http.patch<Plante>("/plante/" + id, {
+        nom: nom,
+        description: description,
+        image: image,
+        categories: [categorie],
+        updated_at: Date.now(),
+      });
+
+      return plante;
+    } catch (error) {
+      throw new Error("problème");
+    }
+  }
+
   async deletePlante(id: number) {
     try {
       const res = this.http.delete<Plante>("/plante/" + id);
