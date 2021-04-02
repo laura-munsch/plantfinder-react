@@ -27,21 +27,35 @@ function AjoutPlante(props: any) {
   }
 
   return (
-    <div>
-      <h2>Ajout d'une plante</h2>
+    <div className="bg-yellow-100 px-10 pt-10 pb-16 absolute w-full bottom-0">
+      <h2 className="text-4xl text-gray-800 mb-8">Ajout d'une plante</h2>
 
       <form onSubmit={ajouterPlante} method="POST">
-        <p>
+        <p className="mb-2">
           <label htmlFor="nom">Nom de la plante : </label>
-          <input type="text" name="nom" id="nom" />
+          <input
+            type="text"
+            name="nom"
+            id="nom"
+            className="h-6 text-green-700"
+          />
         </p>
-        <p>
+        <p className="mb-2">
           <label htmlFor="image">URL d'une image : </label>
-          <input type="text" name="image" id="image" />
+          <input
+            type="text"
+            name="image"
+            id="image"
+            className="h-6 text-green-700"
+          />
         </p>
-        <p>
+        <p className="mb-6">
           <label htmlFor="categorie">Catégorie : </label>
-          <select name="categorie" id="categorie">
+          <select
+            name="categorie"
+            id="categorie"
+            className="h-6 text-green-700"
+          >
             <option value="0" key={1}>
               Aucune
             </option>
@@ -53,12 +67,13 @@ function AjoutPlante(props: any) {
               ))}
           </select>
         </p>
-        <p>
+        <p className="mb-2">
           <label htmlFor="description">
-            Description de la plante (son milieu de vie, comment s'en occuper,
-            etc.) :
+            Description de la plante &ensp;
+            <i>(son milieu de vie, comment s'en occuper, etc.)</i> :
           </label>
-          <br />
+        </p>
+        <p className="mb-8 text-green-700">
           <textarea
             name="description"
             id="description"
@@ -66,7 +81,11 @@ function AjoutPlante(props: any) {
             rows={10}
           ></textarea>
         </p>
-        <input type="submit" value="Ajouter la plante" />
+        <input
+          type="submit"
+          value="Ajouter la plante"
+          className="px-3 py-2 bg-green-700 text-white cursor-pointer"
+        />
       </form>
     </div>
   );
