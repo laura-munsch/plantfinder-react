@@ -4,9 +4,11 @@ import { Categorie } from "../../models/categorie.model";
 import { selectCategories } from "../../redux/categories/selector";
 import { addPlante, fetchPlantes } from "../../redux/plantes/actions";
 
-function AjoutPlante(props: any) {
+const AjoutPlante = (props: any) => {
+  // on utilise les catégories du state global
   const categories: Categorie[] = useSelector(selectCategories);
 
+  // fonction appelée à l'envoi du formulaire :
   function ajouterPlante(e: any) {
     e.preventDefault();
 
@@ -18,9 +20,11 @@ function AjoutPlante(props: any) {
     const cat = document.getElementById("categorie") as HTMLSelectElement;
     const categorie = cat.value === "0" ? undefined : Number(cat.value);
 
+    // on crée la plante, puis récupère à nouveau la liste des plantes pour que celle-ci s'affiche
     addPlante(nom.value, description.value, image.value, categorie).then(
       (res) => {
         fetchPlantes();
+        // on redirige l'utilisateur-rice vers la plante crée
         props.history.push("plante/" + res.data.id);
       }
     );
@@ -89,6 +93,6 @@ function AjoutPlante(props: any) {
       </form>
     </div>
   );
-}
+};
 
 export default AjoutPlante;

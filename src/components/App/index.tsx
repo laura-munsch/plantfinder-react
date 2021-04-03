@@ -9,9 +9,11 @@ import { fetchPlantes } from "../../redux/plantes/actions";
 import { fecthCategories } from "../../redux/categories/actions";
 import ModifierPlante from "../ModifierPlante";
 
+// l'historique servrira aux redirections
 const history = createBrowserHistory();
 
-function App(props: any) {
+const App = (props: any) => {
+  // lorsqu'un-e utilisateur-rice ouvre l'application, on récupère les plantes et les catégories, qui seront sotckées dans le state global
   fetchPlantes();
   fecthCategories();
 
@@ -33,6 +35,6 @@ function App(props: any) {
       </Router>
     </div>
   );
-}
+};
 
 export default App;

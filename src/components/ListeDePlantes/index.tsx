@@ -6,17 +6,19 @@ import { selectPlantes } from "../../redux/plantes/selectors";
 import Recherche from "../Recherche";
 
 function ListeDePlantes() {
+  // on accède aux plantes du state global
   let plantes: Plante[] = useSelector(selectPlantes);
 
+  // on crée un nouveau tableau où seront stockées les plantes filtrées
   const [
     plantesFiltrees,
     setPlantesFiltrees,
   ] = React.useState<Array<Plante> | null>(null);
-
   React.useEffect(() => {
     setPlantesFiltrees(plantes);
   }, [plantes]);
 
+  // on affiche le composant seulement s'il y a des plantes
   if (plantes) {
     return (
       <div className="bg-yellow-100 p-10 mt-10">

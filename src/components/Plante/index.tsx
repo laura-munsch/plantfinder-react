@@ -12,18 +12,20 @@ import {
 } from "../../redux/plantes/actions";
 import { numAverage } from "../../services/utilities.service";
 
-function InfoPlante(props: any) {
+const InfoPlante = (props: any) => {
+  // on regarde dans le state global si l'utilisateur-rice est connecté-e ou non
   const isConnected = useSelector(isLoggedIn);
+
+  // on récupère l'id de la plante dans l'url, puis on la récupère grâce à l'API
   const id = props.match.params.id;
-
   const [plante, setPlante] = React.useState<Plante | null>(null);
-
   React.useEffect(() => {
     fetchPlante(id).then((res) => {
       setPlante(res);
     });
   }, [id]);
 
+  // on affiche le composant seulement si une plante a été chargée
   if (plante !== null) {
     const supprimerPlante = () => {
       removePlante(plante.id).then(() => {
@@ -32,6 +34,7 @@ function InfoPlante(props: any) {
       });
     };
 
+    // composant des caractéristiques de la plante, affiché seulement si elle en possède
     const Caracteristiques = () => {
       return (
         <ul className="flex ml-5 mb-4">
@@ -54,6 +57,7 @@ function InfoPlante(props: any) {
       );
     };
 
+    // on calcule la moyenne des caractéristiques
     let eau: Array<number> = [];
     let lumiere: Array<number> = [];
     let difficulte: Array<number> = [];
@@ -137,6 +141,6 @@ function InfoPlante(props: any) {
   } else {
     return <p>En attente du chargement de la plante...</p>;
   }
-}
+};
 
 export default InfoPlante;

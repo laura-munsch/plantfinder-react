@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import { logIn, logOut } from "../../redux/connexion/action";
 import { isLoggedIn } from "../../redux/connexion/selector";
 
-const connexionButtonStyle: string = "ml-4 italic underline";
-
+// le composant bouton sert à afficher un message différent selon la connexion (ou non) de l'utilisateur-rice
 const ConnexionButton = () => {
+  const connexionButtonStyle: string = "ml-4 italic underline";
+
   if (useSelector(isLoggedIn)) {
     return (
       <button onClick={logOut} className={connexionButtonStyle}>
@@ -22,7 +23,7 @@ const ConnexionButton = () => {
   );
 };
 
-function Accueil() {
+const Accueil = () => {
   return (
     <div className="absolute inset-0">
       <div className="bg-yellow-100 lg:w-2/6 md:w-1/2 w-full absolute top-1/4 z-10 md:h-1/5  h-2/6 lg:left-1/3 md:left-1/4 p-10">
@@ -51,6 +52,6 @@ function Accueil() {
       </div>
     </div>
   );
-}
+};
 
 export default Accueil;
