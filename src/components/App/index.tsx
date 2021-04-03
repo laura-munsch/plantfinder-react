@@ -18,7 +18,7 @@ function App(props: any) {
   return (
     <div className="App">
       <Router history={history}>
-        <h1 className="text-center mt-24 text-5xl">
+        <h1 className="text-center md:mt-24 mt-12 text-5xl">
           <Link to="/">Plantfinder</Link>
         </h1>
         <Route exact path="/" component={Accueil} />

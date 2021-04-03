@@ -25,14 +25,17 @@ const ConnexionButton = () => {
 function Accueil() {
   return (
     <div className="absolute inset-0">
-      <div className="bg-yellow-100 w-2/6 absolute top-1/4 z-10 h-1/5 left-1/3 p-10">
-        <p>Bienvenue sur l'encylopédie de plantes</p>
+      <div className="bg-yellow-100 lg:w-2/6 md:w-1/2 w-full absolute top-1/4 z-10 md:h-1/5  h-2/6 lg:left-1/3 md:left-1/4 p-10">
+        <p className="mb-2">
+          <strong>Bienvenue sur l'encylopédie de plantes.</strong>
+        </p>
+        <p>Connectez-vous pour ajouter, modifier ou supprimer une plante.</p>
       </div>
 
       <div className="bg-gray-800 h-4/6 absolute bottom-0 w-full text-white pt-36">
         <p className="text-center">
           <Link to="/plante">
-            <button className="bg-yellow-700 px-6 py-3">
+            <button className="bg-yellow-700 px-6 py-3 relative z-10">
               Trouver une plante
             </button>
           </Link>

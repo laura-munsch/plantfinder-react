@@ -76,8 +76,8 @@ function InfoPlante(props: any) {
       );
 
     return (
-      <div className="bg-gray-800 text-white mt-10 py-10 flex justify-evenly absolute bottom-0 h-4/5 w-full">
-        <div className="bg-green-700 pt-5 w-2/5 h-5/6">
+      <div className="bg-gray-800 text-white mt-10 lg:py-10 flex justify-evenly lg:absolute bottom-0 h-4/5 w-full flex-wrap">
+        <div className="bg-green-700 pt-5 lg:w-2/5 h-5/6 w-full">
           <h2 className="text-white text-5xl mx-5 mb-5">{plante.nom}</h2>
 
           {(eau.length !== 0 ||
@@ -91,7 +91,7 @@ function InfoPlante(props: any) {
           />
         </div>
 
-        <div className="w-2/5 relative">
+        <div className="lg:w-2/5 relative py-8 px-4 lg:p-0">
           {plante.categories && (
             <ul className="flex text-yellow-100 italic underline mb-10">
               {plante.categories.map((categorie: Categorie, i: number) => (
@@ -108,7 +108,7 @@ function InfoPlante(props: any) {
 
           <p>{plante.description}</p>
 
-          <div className="absolute bottom-0 italic">
+          <div className="lg:absolute bottom-0 italic mt-14 lg:mt-0">
             <Link to={"/plante"}>
               &larr; <span className="underline">Retour à la liste</span>
             </Link>

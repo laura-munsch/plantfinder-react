@@ -43,7 +43,7 @@ function ModifierPlante(props: any) {
 
   if (nom && isConnected) {
     return (
-      <div className="bg-yellow-100 px-10 pt-10 pb-16 absolute w-full bottom-0">
+      <div className="bg-yellow-100 px-10 pt-10 pb-16 md:absolute mt-8 md:h-3/4 lg:h-auto w-full bottom-0">
         <h2 className="text-4xl text-gray-800 mb-8">
           Modification de la plante
         </h2>
