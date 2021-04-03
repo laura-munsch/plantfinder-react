@@ -4,12 +4,14 @@ import { Categorie } from "../models/categorie.model";
 import { Plante } from "../models/plante.models";
 
 class ApiService {
+  // utilisation d'axios pour communiquer avec l'api
   private http: AxiosInstance;
 
   constructor(http: AxiosInstance) {
     this.http = http;
   }
 
+  // fonctions pour la ressource plante
   async fecthPlantes() {
     const { data: plantes } = await this.http.get<Array<Plante>>("/plante");
 
@@ -74,6 +76,7 @@ class ApiService {
     }
   }
 
+  // fonction pour la ressource catégorie
   async fecthCategories() {
     const { data: categories } = await this.http.get<Array<Categorie>>(
       "/categorie"
