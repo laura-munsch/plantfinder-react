@@ -11,6 +11,7 @@ const initialState: PlanteState = {
   toutesLesPlantes: [],
 };
 
+// la seule action qui génère un changement dans l'état global est la récupération de la liste de toutes les plantes
 const plantesReducer: Reducer<PlanteState, PlantesActions> = (
   state = initialState,
   action

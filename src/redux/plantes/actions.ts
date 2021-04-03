@@ -9,6 +9,7 @@ export type LoadPlantesAction = Action<Array<Plante>>;
 
 export type PlantesActions = LoadPlantesAction;
 
+// les actions font appel à l'API, puis génèrent un changement dans l'état global à travers le reducer
 const loadPlantes: ActionCreator<LoadPlantesAction> = (
   plantes: Array<Plante>
 ) => ({

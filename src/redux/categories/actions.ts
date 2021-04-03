@@ -9,6 +9,7 @@ export type LoadCategoriesAction = Action<Array<Categorie>>;
 
 export type CategoriesActions = LoadCategoriesAction;
 
+// les actions font appel à l'API, puis génèrent un changement dans l'état global à travers le reducer
 const loadCategories: ActionCreator<LoadCategoriesAction> = (
   categories: Array<Categorie>
 ) => ({
